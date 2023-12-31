@@ -37,9 +37,11 @@ async function handleBotRequest(
   remixContext: EntryContext
 ) {
   const controller = new AbortController()
+  let rendered = false
   setTimeout(() => {
-    controller.abort()
+    if (!rendered) controller.abort()
   }, ABORT_DELAY)
+
 
   const stream = await renderToReadableStream(
     <RemixServer
@@ -51,6 +53,7 @@ async function handleBotRequest(
       signal: controller.signal,
     }
   )
+  rendered = true
 
   return new Response(stream, {
     status: responseStatusCode,
@@ -65,9 +68,11 @@ async function handleBrowserRequest(
   remixContext: EntryContext
 ) {
   const controller = new AbortController()
+  let rendered = false
   setTimeout(() => {
-    controller.abort()
+    if (!rendered) controller.abort()
   }, ABORT_DELAY)
+
 
   const stream = await renderToReadableStream(
     <RemixServer
@@ -79,6 +84,7 @@ async function handleBrowserRequest(
       signal: controller.signal,
     }
   )
+  rendered = true
 
   return new Response(stream, {
     status: responseStatusCode,
