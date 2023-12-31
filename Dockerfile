@@ -31,6 +31,7 @@ FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /app/src ./src
 COPY --from=prerelease /app/build ./build
+COPY --from=prerelease /app/public ./public
 
 # run the app
 USER bun
