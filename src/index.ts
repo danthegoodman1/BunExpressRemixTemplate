@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid'
 import cors from 'cors'
 
 import { logger } from './logger/index'
-import { ConnectDB } from './db/index'
 import { createRequestHandler } from "@remix-run/express"
 
 import * as build from "../build/index.js"
@@ -34,8 +33,6 @@ async function main() {
   app.use(express.json())
   app.disable('x-powered-by')
   app.use(cors())
-
-  ConnectDB()
 
   // Remix public
   app.use(express.static("public"))
