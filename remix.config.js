@@ -2,7 +2,7 @@
 export default {
   ignoredRouteFiles: ["**/.*"],
   serverModuleFormat: "esm",
-  appDirectory: "remix",
+  appDirectory: "src/remix",
   // assetsBuildDirectory: "public/build",
   // publicPath: "/build/",
   // serverBuildPath: "build/index.js",

@@ -9,7 +9,7 @@ import { logger } from './logger/index'
 import { ConnectDB } from './db/index'
 import { createRequestHandler } from "@remix-run/express"
 
-import * as build from "./build/index.js"
+import * as build from "../build/index.js"
 
 const listenPort = process.env.PORT || '8080'
 
