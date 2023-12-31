@@ -7,6 +7,7 @@ import cors from 'cors'
 
 import { logger } from './logger/index'
 import { createRequestHandler } from "@remix-run/express"
+import { broadcastDevReady } from "@remix-run/node"
 
 import * as build from "../build/index.js"
 
@@ -60,6 +61,9 @@ async function main() {
   app.all("*", createRequestHandler({ build: build as any }))
 
   const server = app.listen(listenPort, () => {
+    if (process.env.NODE_ENV === "development") {
+      broadcastDevReady(build as any)
+    }
     logger.info(`API listening on port ${listenPort}`)
   })
 
