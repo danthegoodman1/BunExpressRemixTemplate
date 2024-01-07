@@ -7,7 +7,7 @@
     "build": "remix build",
     "dev": "remix dev --manual -c \"bun --watch run src/index.ts\"",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "cross-env NODE_ENV=production node ./server.js",
+    "start": "bun src/index.ts",
     "typecheck": "tsc"
   },
   "dependencies": {
