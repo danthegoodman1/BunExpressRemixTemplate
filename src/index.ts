@@ -67,26 +67,23 @@ async function main() {
     logger.info(`API listening on port ${listenPort}`)
   })
 
+  const signals = {
+    SIGHUP: 1,
+    SIGINT: 2,
+    SIGTERM: 15,
+  }
+
   let stopping = false
-
-  process.on('SIGTERM', async () => {
-    if (!stopping) {
+  Object.keys(signals).forEach((signal) => {
+    process.on(signal, async () => {
+      if (stopping) {
+        return
+      }
       stopping = true
-      logger.warn('Received SIGTERM command, shutting down...')
-      server.close()
-      logger.info('exiting...')
+      logger.info(`Received signal ${signal}, shutting down...`)
+      logger.info("exiting...")
       process.exit(0)
-    }
-  })
-
-  process.on('SIGINT', async () => {
-    if (!stopping) {
-      stopping = true
-      logger.warn('Received SIGINT command, shutting down...')
-      server.close()
-      logger.info('exiting...')
-      process.exit(0)
-    }
+    })
   })
 }
 
