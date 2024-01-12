@@ -9,6 +9,9 @@ import { logger } from './logger/index'
 import { createRequestHandler } from "@remix-run/express"
 import { broadcastDevReady } from "@remix-run/node"
 
+import sourceMapSupport from "source-map-support"
+sourceMapSupport.install()
+
 import * as build from "../build/index.js"
 
 const listenPort = process.env.PORT || '8080'
