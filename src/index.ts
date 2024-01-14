@@ -85,6 +85,7 @@ async function main() {
       stopping = true
       logger.info(`Received signal ${signal}, shutting down...`)
       logger.info("exiting...")
+      logger.flush()
       process.exit(0)
     })
   })
