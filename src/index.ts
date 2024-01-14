@@ -85,7 +85,7 @@ async function main() {
       stopping = true
       logger.info(`Received signal ${signal}, shutting down...`)
       logger.info("exiting...")
-      logger.flush()
+      logger.flush() // pino actually fails to flush, even with awaiting on a callback
       process.exit(0)
     })
   })
